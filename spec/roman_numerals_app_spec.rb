@@ -38,10 +38,10 @@ RSpec.describe RomanNumeralsApp do
     3999 => "MMMCMXCIX",
   }.each do |arabic, roman|
     it "converts #{arabic} to #{roman}" do 
-      put "/convert?arabic=#{arabic}"
-      expect(last_response.body).to include("Arabic: #{arabic} == Roman: #{roman}")
+      post "/convert?arabic=#{arabic}"
+      expect(last_response.body).to include("Arabic: #{arabic}")
+      expect(last_response.body).to include("Roman: #{roman}")
       expect(last_response.body).to include("Again?")
     end
   end
-
 end

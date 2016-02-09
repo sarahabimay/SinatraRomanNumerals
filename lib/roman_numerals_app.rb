@@ -1,4 +1,6 @@
 require "sinatra/base"
+require "tilt/erb"
+
 require "arabic_roman_converter"
 
 class RomanNumeralsApp < Sinatra::Base
@@ -9,7 +11,7 @@ class RomanNumeralsApp < Sinatra::Base
     erb :index
   end
 
-  put '/convert' do
+  post '/convert' do
     @arabic = params['arabic']
     @roman = ArabicRomanConverter.convert(@arabic.to_i) 
     erb :convert 
