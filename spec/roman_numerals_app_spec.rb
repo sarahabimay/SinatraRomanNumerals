@@ -19,15 +19,29 @@ RSpec.describe RomanNumeralsApp do
     expect(last_response.body).to include("Convert To Roman")
   end
 
-  it "converts 0 to ''" do
-    put "/convert?arabic=0"
-    expect(last_response.body).to include("Arabic: 0 == Roman:")
-    expect(last_response.body).to include("Again?")
+  { 0 => "",
+    1 => "I",
+    2 => "II",
+    3 => "III",
+    4 => "IV",
+    5 => "V",
+    6 => "VI",
+    9 => "IX",
+    10 => "X",
+    50 => "L",
+    90 => "XC",
+    100 => "C",
+    400 => "CD",
+    500 => "D",
+    900 => "CM",
+    1000 => "M",
+    3999 => "MMMCMXCIX",
+  }.each do |arabic, roman|
+    it "converts #{arabic} to #{roman}" do 
+      put "/convert?arabic=#{arabic}"
+      expect(last_response.body).to include("Arabic: #{arabic} == Roman: #{roman}")
+      expect(last_response.body).to include("Again?")
+    end
   end
 
-  it "converts 1 to II" do
-    put "/convert?arabic=1"
-    expect(last_response.body).to include("Arabic: 1 == Roman: I")
-    expect(last_response.body).to include("Again?")
-  end
 end
