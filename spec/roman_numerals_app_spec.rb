@@ -24,4 +24,10 @@ RSpec.describe RomanNumeralsApp do
     expect(last_response.body).to include("Arabic: 0 == Roman:")
     expect(last_response.body).to include("Again?")
   end
+
+  it "converts 1 to II" do
+    put "/convert?arabic=1"
+    expect(last_response.body).to include("Arabic: 1 == Roman: I")
+    expect(last_response.body).to include("Again?")
+  end
 end

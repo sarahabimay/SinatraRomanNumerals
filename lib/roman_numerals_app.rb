@@ -11,7 +11,7 @@ class RomanNumeralsApp < Sinatra::Base
 
   put '/convert' do
     @arabic = params['arabic']
-    @roman = ArabicRomanConverter.convert(@arabic) 
+    @roman = ArabicRomanConverter.convert(@arabic.to_i) 
     erb :convert 
   end
 end
