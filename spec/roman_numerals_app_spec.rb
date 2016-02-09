@@ -18,4 +18,10 @@ RSpec.describe RomanNumeralsApp do
     expect(last_response.body).to include("Arabic Number to Convert")
     expect(last_response.body).to include("Convert To Roman")
   end
+
+  it "converts 0 to ''" do
+    put "/convert?arabic=0"
+    expect(last_response.body).to include("Arabic: 0 == Roman:")
+    expect(last_response.body).to include("Again?")
+  end
 end

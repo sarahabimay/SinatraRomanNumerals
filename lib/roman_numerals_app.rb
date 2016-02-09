@@ -8,4 +8,10 @@ class RomanNumeralsApp < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  put '/convert' do
+    @arabic = params['arabic']
+    @roman = ArabicRomanConverter.convert(@arabic) 
+    erb :convert 
+  end
 end
